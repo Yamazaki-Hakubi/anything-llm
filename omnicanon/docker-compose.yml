@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: omnicanon-frontend
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - backend
+    networks:
+      - omnicanon-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  backend:
+    image: node:20-alpine
+    container_name: omnicanon-backend
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    command: npm start
+    ports:
+      - "8000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    networks:
+      - omnicanon-network
+    restart: unless-stopped
+
+  # Redis for caching (optional)
+  redis:
+    image: redis:alpine
+    container_name: omnicanon-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - omnicanon-network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+networks:
+  omnicanon-network:
+    driver: bridge
+
+volumes:
+  redis-data:

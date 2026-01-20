@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+:root {
+  --cosmic-void: #0a0a1a;
+  --cosmic-deep: #121228;
+  --cosmic-nebula: #1a1a3a;
+  --cosmic-gold: #c9a227;
+  --cosmic-gold-bright: #ffd700;
+  --cosmic-gold-dark: #8b7500;
+  --gauge-frame: #8b7500;
+  --gauge-frame-light: #c9a227;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--cosmic-void);
+  color: white;
+  font-family: 'JetBrains Mono', monospace;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cosmic-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cosmic-gold-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cosmic-gold);
+}
+
+/* Cosmic font styles */
+.font-cosmic {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.font-data {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Glow effects */
+.glow-gold {
+  box-shadow: 0 0 20px rgba(201, 162, 39, 0.5);
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(68, 136, 255, 0.5);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(68, 255, 136, 0.5);
+}
+
+.glow-red {
+  box-shadow: 0 0 20px rgba(255, 68, 68, 0.5);
+}
+
+.text-glow-gold {
+  text-shadow: 0 0 10px rgba(201, 162, 39, 0.8);
+}
+
+.text-glow-blue {
+  text-shadow: 0 0 10px rgba(68, 136, 255, 0.8);
+}
+
+/* Animation keyframes */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes energy-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes data-stream {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Utility classes */
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-rotate {
+  animation: rotate 20s linear infinite;
+}
+
+.animate-scan-line {
+  animation: scan-line 8s linear infinite;
+}
+
+.animate-energy-flow {
+  background-size: 200% 100%;
+  animation: energy-flow 3s linear infinite;
+}
+
+/* Ornate border styles */
+.border-ornate {
+  border-image: linear-gradient(
+    135deg,
+    var(--cosmic-gold-dark) 0%,
+    var(--cosmic-gold) 25%,
+    var(--cosmic-gold-bright) 50%,
+    var(--cosmic-gold) 75%,
+    var(--cosmic-gold-dark) 100%
+  ) 1;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(26, 26, 58, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 162, 39, 0.2);
+}
+
+/* Gauge frame effect */
+.gauge-frame {
+  background: linear-gradient(
+    145deg,
+    #5a4a00 0%,
+    #8b7500 20%,
+    #c9a227 40%,
+    #daa520 50%,
+    #c9a227 60%,
+    #8b7500 80%,
+    #5a4a00 100%
+  );
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.gauge-frame-inner {
+  background: var(--cosmic-void);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Energy zone backgrounds */
+.zone-chaos {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(139, 0, 0, 0.3) 0%,
+    rgba(74, 0, 0, 0.2) 50%,
+    transparent 100%
+  );
+}
+
+.zone-love {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(68, 136, 255, 0.3) 0%,
+    rgba(0, 34, 102, 0.2) 50%,
+    transparent 100%
+  );
+}
+
+/* Canvas container styles */
+.canvas-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.canvas-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1280px) {
+  .font-cosmic {
+    font-size: 90%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .font-cosmic {
+    font-size: 80%;
+  }
+}
+
+/* Selection styling */
+::selection {
+  background: var(--cosmic-gold);
+  color: var(--cosmic-void);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--cosmic-gold);
+  outline-offset: 2px;
+}
+
+/* Button base styles */
+button {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Input styles */
+input, select, textarea {
+  background: var(--cosmic-deep);
+  border: 1px solid var(--gauge-frame);
+  color: var(--cosmic-gold);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--cosmic-gold);
+  box-shadow: 0 0 10px rgba(201, 162, 39, 0.3);
+}
+
+/* Loading state */
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--cosmic-nebula) 0%,
+    var(--cosmic-gold-dark) 50%,
+    var(--cosmic-nebula) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Grid overlay effect */
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(201, 162, 39, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 162, 39, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Noise texture */
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
